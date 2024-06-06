@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Project Details</h1>
+<div>
+    <p><strong>Name:</strong> <span th:text="${project.name}">Project Name</span></p>
+    <p><strong>Status:</strong> <span th:text="${project.status}">Project Status</span></p>
+    <p><strong>Members:</strong>
+    <ul>
+        <li th:each="member : ${project.members}" th:text="${member}">Member</li>
+    </ul>
+    </p>
+    <p><strong>Tags:</strong>
+    <ul>
+        <li th:each="tag : ${project.tags}" th:text="${tag}">Tag</li>
+    </ul>
+    </p>
+    <p><strong>Milestones:</strong>
+    <ul>
+        <li th:each="milestone : ${project.milestones}" th:text="${milestone}">Milestone</li>
+    </ul>
+    </p>
+</div>
+<a href="/projects">Back to Projects</a>
+</body>
+</html>
