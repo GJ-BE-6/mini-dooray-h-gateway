@@ -13,6 +13,13 @@ public class MileStoneController {
     @Autowired
     private MileStoneService mileStoneService;
 
+
+    @GetMapping("/milestones")
+    public String getMilestoneAddPage(){
+        return "projectMilestoneAdd";
+    }
+
+    
     @PostMapping("/milestones")
     public String createMilestone( @ModelAttribute MileStone mileStone) {
         mileStoneService.createMilestone(mileStone);

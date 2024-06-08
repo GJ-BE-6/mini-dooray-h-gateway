@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ProjectMain</title>
+    <title>메인홈</title>
 </head>
 <body>
-<h1>Projects</h1>
+<h1>나의 프로젝트 목록</h1>
 <ul>
     <li th:each="project : ${projects}">
         <a th:href="@{/projects/{id}(id=${project.id})}" th:text="${project.name}">Project Name</a>
     </li>
 </ul>
-<a href="/projects/add">Add Project</a>
+<a href="/projects/add">프로젝트 추가하기</a>
 </body>
 </html>

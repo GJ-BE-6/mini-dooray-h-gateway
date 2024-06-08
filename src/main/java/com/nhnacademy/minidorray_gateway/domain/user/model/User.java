@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 // dto 안만듭니다. 보안 신경안씁니다.
 public class User {
-    private String username;
+    private String id;
     private String password;
     private String email;
 

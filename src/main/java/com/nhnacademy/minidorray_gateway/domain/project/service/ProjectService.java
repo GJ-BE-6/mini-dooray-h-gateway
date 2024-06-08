@@ -21,8 +21,8 @@ public class ProjectService {
 
 
 
-    public List<Project> getProjects() {
-        return taskClient.getProjects();
+    public List<Project> getProjects(String userId) {
+        return taskClient.getProjects(userId);
     }
 
     public Project getProject(Long id) {

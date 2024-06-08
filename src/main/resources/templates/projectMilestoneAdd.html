@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>마일스톤 추가</title>
+</head>
+<body>
+<h1>마일스톤 추가하기</h1>
+<form th:action="@{/milestones}" method="post">
+    <label for="name">마일스톤 이름:</label>
+    <input type="text" id="name" name="name">
+    <label for="status">Status:</label>
+    <input type="text" id="status" name="status">
+    <button type="submit">마일스톤 추가</button>
+</form>
+</body>
+</html>

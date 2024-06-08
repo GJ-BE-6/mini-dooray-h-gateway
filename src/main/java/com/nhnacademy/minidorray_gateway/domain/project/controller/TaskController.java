@@ -24,6 +24,13 @@ public class TaskController {
         return "taskList";
     }
 
+    @GetMapping("/task")
+    public String getAddTasks() {
+
+        return "projectTaskAdd";
+    }
+
+
     @PostMapping
     public String createTask(@ModelAttribute Task task) {
         taskService.createTask(task);
@@ -41,4 +48,5 @@ public class TaskController {
         taskService.deleteTask(taskId);
         return "redirect:/tasks";
     }
+
 }

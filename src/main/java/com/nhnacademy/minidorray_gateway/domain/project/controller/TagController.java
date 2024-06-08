@@ -13,6 +13,12 @@ public class TagController {
     @Autowired
     private TagService tagService;
 
+
+    @GetMapping("/tags")
+    public String getTagsAddPage(){
+        return "projectTagAdd";
+    }
+
     @PostMapping("/tags")
     public String createComment(@ModelAttribute Tag tag) {
         tagService.createTag(tag);

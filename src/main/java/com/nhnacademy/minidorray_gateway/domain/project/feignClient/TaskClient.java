@@ -10,8 +10,8 @@ import java.util.List;
 @FeignClient(name = "task-api", url = "http://localhost:8082/api/task")
 public interface TaskClient {
 
-    @GetMapping("/projects")
-    List<Project> getProjects();
+    @GetMapping("/projects/{userId}")
+    List<Project> getProjects(@PathVariable String userId);
 
     @GetMapping("/projects/{id}")
     Project getProject(@PathVariable("id") Long id);

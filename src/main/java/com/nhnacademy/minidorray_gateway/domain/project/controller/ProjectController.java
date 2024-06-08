@@ -18,12 +18,15 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @GetMapping("/members")
+    public String getMemberAddPage(){
+        return "projectMemberAdd";
+    }
 
 
-
-    @GetMapping
-    public String getProjects(Model model) {
-        List<Project> projects = projectService.getProjects();
+    @GetMapping("/{userId}")
+    public String getProjects(@PathVariable String userId , Model model) {
+        List<Project> projects = projectService.getProjects(userId);
         model.addAttribute("projects", projects);
         return "projectMain";
     }
@@ -46,6 +49,8 @@ public class ProjectController {
         model.addAttribute("project", project);
         return "projectView";
     }
+
+
 
     @PutMapping("/{projectId}/tags")
     public String setTags(@PathVariable Long projectId, @RequestBody List<Tag> tags) {

@@ -45,4 +45,21 @@ public class UserController {
 //        model.addAttribute("error", "Login failed");
 //        return "userLogin";
 //    }
+
+
+//
+//    @Slf4j
+//    @Controller
+//    @RequestMapping("/login")
+//    public class LoginController {
+//
+//        @GetMapping
+//        public String login(Authentication authentication) {
+//            if(Objects.isNull(authentication)) {
+//                return "login";
+//            }
+//            return "redirect:/";
+//        }
+//
+//    }
 }
