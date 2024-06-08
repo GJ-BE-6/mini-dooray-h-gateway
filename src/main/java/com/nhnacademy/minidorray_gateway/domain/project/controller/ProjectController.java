@@ -2,6 +2,7 @@ package com.nhnacademy.minidorray_gateway.domain.project.controller;
 
 import com.nhnacademy.minidorray_gateway.domain.project.model.MileStone;
 import com.nhnacademy.minidorray_gateway.domain.project.model.Project;
+import com.nhnacademy.minidorray_gateway.domain.project.model.ProjectMember;
 import com.nhnacademy.minidorray_gateway.domain.project.model.Tag;
 import com.nhnacademy.minidorray_gateway.domain.project.service.ProjectService;
 import com.nhnacademy.minidorray_gateway.domain.user.model.User;
@@ -31,10 +32,10 @@ public class ProjectController {
         return "projectMain";
     }
 
-    @PostMapping
-    public String createProject(@ModelAttribute Project project) {
+    @PostMapping("/{userId}")
+    public String createProject(@ModelAttribute Project project, @PathVariable String userId) {
         projectService.createProject(project);
-        return "redirect:/projects";
+        return "redirect:/projects/"+userId;
     }
 
     @PostMapping("/{projectId}/members")
@@ -46,7 +47,10 @@ public class ProjectController {
     @GetMapping("/{projectId}")
     public String getProject(@PathVariable Long projectId, Model model) {
         Project project = projectService.getProject(projectId);
+        List<ProjectMember>memberList=projectService.getProjectMember(projectId);
+
         model.addAttribute("project", project);
+        model.addAttribute("member", memberList);
         return "projectView";
     }
 

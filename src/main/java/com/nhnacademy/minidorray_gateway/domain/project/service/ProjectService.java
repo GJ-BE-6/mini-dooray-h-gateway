@@ -3,6 +3,7 @@ package com.nhnacademy.minidorray_gateway.domain.project.service;
 import com.nhnacademy.minidorray_gateway.domain.project.feignClient.TaskClient;
 import com.nhnacademy.minidorray_gateway.domain.project.model.MileStone;
 import com.nhnacademy.minidorray_gateway.domain.project.model.Project;
+import com.nhnacademy.minidorray_gateway.domain.project.model.ProjectMember;
 import com.nhnacademy.minidorray_gateway.domain.project.model.Tag;
 import com.nhnacademy.minidorray_gateway.domain.user.model.User;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,9 @@ public class ProjectService {
         this.taskClient = taskClient;
     }
 
-
+    public List<ProjectMember> getProjectMember(Long projectId){
+        return taskClient.getMembers(projectId);
+    }
 
     public List<Project> getProjects(String userId) {
         return taskClient.getProjects(userId);

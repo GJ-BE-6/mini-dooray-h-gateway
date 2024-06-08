@@ -1,18 +1,12 @@
-package com.nhnacademy.minidorray_gateway.domain.project.model;
-
+package com.nhnacademy.minidorray_gateway.domain.project.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
-@Setter
-public class Project {
+public class ProjectDto {
     private Long projectId;
     private String projectName;
     private String projectStatus;
-
 }

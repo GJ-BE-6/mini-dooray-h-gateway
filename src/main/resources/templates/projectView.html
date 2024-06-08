@@ -7,11 +7,13 @@
 <body>
 <h1>프로젝트 세부내역</h1>
 <div>
-    <p><strong>프로젝트 이름:</strong> <span th:text="${project.name}">Project Name</span></p>
-    <p><strong>상태:</strong> <span th:text="${project.status}">Project Status</span></p>
+    <p><strong>프로젝트 이름:</strong> <span th:text="${project.projectName}"></span></p>
+    <p><strong>상태:</strong> <span th:text="${project.projectStatus}"></span></p>
     <p><strong>멤버목록:</strong>
-    <ul>
-        <li th:each="member : ${project.members}" th:text="${member}">Member</li>
+    <ul th:each="member : ${member}">
+        <li th:text="${member.userId}" ></li>
+        <li th:text="${member.projectId}" ></li>
+        <li th:text="${member.role}" ></li>
     </ul>
     </p>
     <p><strong>업무목록:</strong>
@@ -24,6 +26,6 @@
 <a href="/tasks">테스크 추가</a>
 <a href="/milestones">마일스톤 추가</a>
 <a href="/tags">태그 추가</a>
-<a href="/tags">멤버 추가</a>
+<a href="/member">멤버 추가</a>
 </body>
 </html>

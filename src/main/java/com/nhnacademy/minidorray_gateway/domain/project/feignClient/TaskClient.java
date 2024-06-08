@@ -31,6 +31,10 @@ public interface TaskClient {
     @GetMapping("/tasks")
     List<Task> getTasks();
 
+
+    @GetMapping("/projects/{id}/members")
+    List<ProjectMember> getMembers(@PathVariable("id") Long id);
+
     @PostMapping("/tasks")
     void createTask(@RequestBody Task task);
 

@@ -8,9 +8,9 @@
 <h1>나의 프로젝트 목록</h1>
 <ul>
     <li th:each="project : ${projects}">
-        <a th:href="@{/projects/{id}(id=${project.id})}" th:text="${project.name}">Project Name</a>
+        <a th:href="@{/projects/{id}(id=${projects.projectId})}" th:text="${projects.projectName}"></a>
     </li>
 </ul>
-<a href="/projects/add">프로젝트 추가하기</a>
+<a th:href="@{/projects/{id}(id=${projects.projectId})}" >프로젝트 추가하기</a>
 </body>
 </html>
