@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Welcome to the Home Page</h1>
+    <p th:text="'Hello, ' + ${#authentication.name} + '!'">Hello, User!</p>
+    <a th:href="@{/projects/{userId}(userId=${#authentication.name})}" >나의 프로젝트 목록 확인</a>
+</main>
+</body>
+</html>
