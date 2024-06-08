@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ProjectMain</title>
+</head>
+<body>
+<h1>Projects</h1>
+<ul>
+    <li th:each="project : ${projects}">
+        <a th:href="@{/projects/{id}(id=${project.id})}" th:text="${project.name}">Project Name</a>
+    </li>
+</ul>
+<a href="/projects/add">Add Project</a>
+</body>
+</html>
