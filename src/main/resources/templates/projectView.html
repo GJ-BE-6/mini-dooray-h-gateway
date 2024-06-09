@@ -26,11 +26,11 @@
         <ul th:each="task : ${tasks}">
 
             <li>
-                <a th:href="@{/projects/tasks/{id}(id=${task.id})}" th:text="${task.name}"></a>
+                <a th:href="@{/tasks/{id}(id=${task.taskId})}" th:text="${task.taskName}"></a>
                 <!-- 수정 버튼 -->
-                <button th:onclick="'window.location.href=\'/projects/tasks/' + ${task.id} + '\';'">수정</button>
+                <button th:onclick="'window.location.href=\'/tasks/task/edit/' + ${task.taskId} + '\';'">수정</button>
                 <!-- 삭제 버튼 -->
-                <form th:action="@{/projects/tasks/{id}(id=${task.id})}" method="post"
+                <form th:action="@{/tasks/task/{id}(id=${task.taskId})}" th:method="delete"
                       onsubmit="return confirm('정말 삭제하시겠습니까?');">
                     <input type="hidden" name="_method" value="delete">
                     <button type="submit">삭제</button>
@@ -41,7 +41,7 @@
 
 
 </div>
-<a th:href="@{/tasks/{projectId}(projectId=${project.projectId})}">테스크 추가</a>
+<a th:href="@{/tasks/task/{projectId}(projectId=${project.projectId})}">테스크 추가</a>
 <a th:href="@{/milestones/{projectId}(projectId=${project.projectId})}">마일스톤 추가</a>
 <a th:href="@{/tags/{projectId}(projectId=${project.projectId})}">태그 추가</a>
 <a th:href="@{/projects/{projectId}/members(projectId=${project.projectId})}">멤버 추가</a>

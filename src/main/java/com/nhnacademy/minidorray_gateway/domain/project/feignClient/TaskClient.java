@@ -65,15 +65,15 @@ public interface TaskClient {
 
     // 특정 Task 조회
     @GetMapping("/projects/tasks/{id}")
-    Task getTask(@PathVariable Long id);
+    TaskDto getTask(@PathVariable Long id);
 
     // Task 등록
     @PostMapping("/projects/tasks")
-    Task createTask(@RequestBody Task task);
+    Task createTask(@RequestBody TaskCreateDto task);
 
     // Task 수정
     @PutMapping("/projects/tasks")
-    void updateTask(@RequestBody Task task);
+    void updateTask(@RequestBody TaskDto task);
 
     // Task 삭제
     @DeleteMapping("/projects/tasks/{id}")
@@ -82,7 +82,7 @@ public interface TaskClient {
 
     //  Task 에 달린 Comment List로 가져오기
     @GetMapping("/tasks/{taskId}/comments")
-    public ResponseEntity<List<CommentResponseDTO>> getComments(@PathVariable Long taskId);
+    public List<CommentResponseDTO> getComments(@PathVariable Long taskId);
 
     @PostMapping("/tasks/{taskId}/comments")
     public ResponseEntity<CommentResponseDTO> createComment(@PathVariable("taskId") Long taskId, @RequestBody CommentDTO commentDTO);
@@ -105,7 +105,7 @@ public interface TaskClient {
 
     // TaskId로 Task에 등록된 Milestone 가져오기
     @GetMapping("/tasks/{taskId}/milestone")
-    public ResponseEntity<MilestoneDTO> getMilestoneByTaskId(@PathVariable("taskId") Long taskId);
+    public List<MilestoneDTO> getMilestoneByTaskId(@PathVariable("taskId") Long taskId);
 
 
     // ProjectId로 프로젝트에 등록된 Tag List 가져오기
@@ -122,7 +122,7 @@ public interface TaskClient {
 
     // TaskId로 Task에 등록된 Tag List로 가져오기
     @GetMapping("/tasks/{taskId}/tags")
-    public ResponseEntity<List<TagDTO>> getTaskTagsByTaskId(@PathVariable("taskId") Long taskId);
+    public List<TagDTO> getTaskTagsByTaskId(@PathVariable("taskId") Long taskId);
 
 
     @PostMapping("/milestones")
