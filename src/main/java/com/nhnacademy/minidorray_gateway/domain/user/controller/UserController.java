@@ -60,4 +60,20 @@ public class UserController {
     public String accessDenied() {
         return "access_denied";
     }
+
+    @GetMapping("/profile")
+    public String profileUser(Model model) {
+        // 현재 인증된 사용자 정보를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userId = authentication.getName();
+
+        // 인증된 사용자 객체를 UserService를 통해 가져옴
+        User user = userService.getUserById(userId);
+
+        // 사용자 정보를 모델에 추가
+        model.addAttribute("user", user);
+
+        return "profile";
+    }
+
 }

@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>홈:미니두레이</title>
+    <title>내 정보</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,21 +14,11 @@
             background-color: #007BFF;
             padding: 10px 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            margin-left: 20px;
-            font-size: 24px;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
         }
         header nav {
             display: flex;
+            justify-content: center;
             align-items: center;
-            width: 100%;
         }
         header nav ul {
             list-style: none;
@@ -36,14 +26,6 @@
             margin: 0;
             display: flex;
             gap: 20px;
-        }
-        header nav ul.center {
-            justify-content: center;
-            flex-grow: 1;
-        }
-        header nav ul.right {
-            justify-content: flex-end;
-            margin-right: 20px;
         }
         header nav ul li {
             display: inline;
@@ -68,45 +50,41 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        .btn {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 16px;
-            color: white;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
+        .profile-info {
+            text-align: left;
+            margin: 20px auto;
+            max-width: 600px;
         }
-        .btn:hover {
-            background-color: #0056b3;
+        .profile-info p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .profile-info p span {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 <header>
-    <a href="/home" class="logo">Dooray!</a>
     <nav>
-        <ul class="center">
+        <ul>
             <li><a href="/home">Home</a></li>
-            <li><a href="/dummy1">더미버튼1</a></li>
-            <li><a href="/dummy2">더미버튼2</a></li>
-        </ul>
-        <ul class="right" id="auth-buttons">
-            <li id="login"><a href="/login">로그인</a></li>
             <li id="register"><a href="/register">회원 가입</a></li>
-            <li id="profile" style="display:none;"><a href="/profile">내 정보</a></li>
-            <li id="logout" style="display:none;"><a href="/logout">로그아웃</a></li>
+            <li id="login"><a href="/login">로그인</a></li>
+            <li id="logout"><a href="/logout">로그아웃</a></li>
+            <li id="profile"><a href="/profile">내 정보</a></li>
         </ul>
     </nav>
 </header>
 <div class="container">
-    <h1>Welcome to the Home Page</h1>
-    <p th:text="'Hello, ' + ${#authentication.name} + '!'">Hello, User!</p>
-    <a class="btn" th:href="@{/projects/{userId}(userId=${#authentication.name})}">나의 프로젝트 목록 확인</a>
+    <h1>내 정보</h1>
+    <div class="profile-info">
+        <p><span>ID:</span> <span th:text="${user.userId}">User ID</span></p>
+        <p><span>이름:</span> <span th:text="${user.userName}">User Name</span></p>
+        <p><span>이메일:</span> <span th:text="${user.userEmail}">User Email</span></p>
+        <p><span>상태:</span> <span th:text="${user.userStatus}">User Status</span></p>
+        <p><span>최근 접속일:</span> <span th:text="${user.lastLoginDate}">Last Login Date</span></p>
+    </div>
 </div>
 
 <script>
@@ -122,15 +100,15 @@
             .then(response => response.json())
             .then(data => {
                 if (data.loggedIn) {
-                    document.getElementById('login').style.display = 'none';
                     document.getElementById('register').style.display = 'none';
-                    document.getElementById('profile').style.display = 'inline';
+                    document.getElementById('login').style.display = 'none';
                     document.getElementById('logout').style.display = 'inline';
+                    document.getElementById('profile').style.display = 'inline';
                 } else {
-                    document.getElementById('login').style.display = 'inline';
                     document.getElementById('register').style.display = 'inline';
-                    document.getElementById('profile').style.display = 'none';
+                    document.getElementById('login').style.display = 'inline';
                     document.getElementById('logout').style.display = 'none';
+                    document.getElementById('profile').style.display = 'none';
                 }
             })
             .catch(error => {
@@ -140,3 +118,4 @@
 </script>
 </body>
 </html>
+
