@@ -1,0 +1,15 @@
+### User Login
+POST http://localhost:8080/login
+Content-Type: application/x-www-form-urlencoded
+
+userId=john1&password=123456
+
+###
+
+### User Logout
+GET http://localhost:8080/logout
+
+###
+
+### Get Current User
+GET http://localhost:8080/current-user

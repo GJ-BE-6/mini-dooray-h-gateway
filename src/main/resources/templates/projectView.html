@@ -18,8 +18,9 @@
     </p>
     <p><strong>업무목록:</strong>
     <ul>
-        <li th:each="Task : ${Task}" th:text="${Task}">Tag</li>
-    <!--테스크에서 마일스톤, 태그 설정하기 -->
+        <li th:each="task : ${tasks}" th:text="${Task}">
+            <a th:href="@{/projects/tasks/{id}(id=${task.id})}" th:text="${task.name}"></a>
+        </li>
     </ul>
 
 </div>

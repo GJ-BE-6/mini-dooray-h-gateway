@@ -1,8 +1,11 @@
 package com.nhnacademy.minidorray_gateway.domain.project.controller;
 
 
+import com.nhnacademy.minidorray_gateway.domain.project.feignClient.TaskClient;
+import com.nhnacademy.minidorray_gateway.domain.project.model.Comment;
+import com.nhnacademy.minidorray_gateway.domain.project.model.Milestone;
+import com.nhnacademy.minidorray_gateway.domain.project.model.Tag;
 import com.nhnacademy.minidorray_gateway.domain.project.model.Task;
-import com.nhnacademy.minidorray_gateway.domain.project.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,17 +14,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/tasks")
+@RequestMapping("/projects")
 public class TaskController {
 
     @Autowired
-    private TaskService taskService;
+    private TaskClient taskFeignClient;
 
-    @GetMapping
-    public String getTasks(Model model) {
-        List<Task> tasks = taskService.getTasks();
-        model.addAttribute("tasks", tasks);
-        return "taskList";
+    @GetMapping("/tasks/{id}")
+    public String getTasks(@PathVariable Long id, Model model) {
+        Task task = taskFeignClient.getTask(id);
+        List<Comment>commentList= (List<Comment>) taskFeignClient.getComments(id);
+        List<Milestone>milestoneList= (List<Milestone>) taskFeignClient.getMilestoneByTaskId(id);
+        List<Tag>tagList= (List<Tag>) taskFeignClient.getTaskTagsByTaskId(id);
+        model.addAttribute("task", task);
+        model.addAttribute("comments", commentList);
+        model.addAttribute("milestones", milestoneList);
+        model.addAttribute("tags", tagList);
+        return "taskView";
     }
 
     @GetMapping("/task")
@@ -33,20 +42,20 @@ public class TaskController {
 
     @PostMapping
     public String createTask(@ModelAttribute Task task) {
-        taskService.createTask(task);
+        taskFeignClient.createTask(task);
         return "redirect:/tasks";
     }
-
-    @PutMapping("/{taskId}")
-    public String updateTask(@PathVariable Long taskId, @ModelAttribute Task task) {
-        taskService.updateTask(taskId, task);
-        return "redirect:/tasks";
-    }
-
-    @DeleteMapping("/{taskId}")
-    public String deleteTask(@PathVariable Long taskId) {
-        taskService.deleteTask(taskId);
-        return "redirect:/tasks";
-    }
+//
+//    @PutMapping("/{taskId}")
+//    public String updateTask(@PathVariable Long taskId, @ModelAttribute Task task) {
+//        taskService.updateTask(taskId, task);
+//        return "redirect:/tasks";
+//    }
+//
+//    @DeleteMapping("/{taskId}")
+//    public String deleteTask(@PathVariable Long taskId) {
+//        taskService.deleteTask(taskId);
+//        return "redirect:/tasks";
+//    }
 
 }

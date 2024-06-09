@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>테스크 추가</title>
 </head>
 <body>
 <h1>테스크 추가하기</h1>
-<form th:action="@{/tasks/task}" method="post">
-    <label for="name">테스크 이름:</label>
-    <input type="text" id="name" name="name">
-    <label for="content">테스크 내용:</label>
-    <input id="content" name="content"/>
+<form th:action="@{/tasks}" method="post">
+    <label for="taskName">테스크 이름:</label>
+    <input type="text" id="taskName" name="taskName" required>
+
+    <label for="taskDescription">테스크 내용:</label>
+    <textarea id="taskDescription" name="taskDescription" required></textarea>
+
+     <input type="hidden" name="taskStatus" value="defaultStatus">
+    <input type="hidden" name="projectId" value="1">
+    <input type="hidden" name="userId" value="user1">
+
     <button type="submit">테스크 추가하기</button>
 </form>
 </body>

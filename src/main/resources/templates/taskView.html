@@ -9,27 +9,30 @@
 <div>
     <p><strong>테스크이름:</strong> <span th:text="${task.name}">task Name</span></p>
     <p><strong>테스크 상태 :</strong> <span th:text="${task.status}">task Status</span></p>
+    <p><strong>테스크 내용 :</strong> <span th:text="${task.description}">task description</span></p>
 
     <p><strong>마일스톤 목록:</strong>
-    <ul>
-        <li th:each="milestone : ${milestone}" th:text="${milestone}">milestone</li>
+    <ul th:each="milestone : ${milestones}">
+        <li th:text="${milestone.name}"></li>
+        <li th:text="${milestone.startDate}"></li>
+        <li th:text="${milestone.dueDate}"></li>
     </ul>
     <p><strong>태그 목록:</strong>
-    <ul>
-        <li th:each="tag : ${tag}" th:text="${tag}">Tag</li>
+    <ul th:each="tag : ${tags}">
+        <li th:text="${tag.name}"></li>
     </ul>
 
 </div>
 <div>
-
     <p><strong>코멘트 목록:</strong>
-    <ul>
-        <li th:each="comment : ${comment}" th:text="${comment}">comment</li>
+    <ul th:each="comment : ${comments}">
+        <li th:text="${comment.userId}"></li>
+        <li th:text="${comment.content}"></li>
     </ul>
     <p>코멘트 추가하기</p>
-    <form th:action="@{/comments/tasks/{taskId}/comment}" method="post">
+    <form th:action="@{/comments/tasks/{taskId}(taskid=${task.id})/comments}" method="post">
         <label for="id">멤버 아이디:</label>
-        <input type="text" id="id" name="id">
+        <input type="text" id="id" name="userId">
         <label for="content">코멘트 내용:</label>
         <input id="content" name="content"/>
         <button type="submit">코멘트 추가하기</button>

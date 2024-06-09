@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>프로젝트 멤버추가</title>
+    <title>프로젝트 멤버 추가</title>
 </head>
 <body>
-<h1>멤버추가</h1>
-<form th:action="@{/{projectId}/members}" method="post">
-    <label for="id">멤버아이디 :</label>
-    <input type="text" id="id" name="id">
+<h1>멤버 추가</h1>
+<form th:action="@{/projects/{projectId}/members}" method="post">
+    <label for="memberId">멤버 아이디:</label>
+    <input type="text" id="memberId" name="memberId" required>
     <button type="submit">멤버 추가</button>
 </form>
 </body>
