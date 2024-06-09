@@ -9,14 +9,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @AllArgsConstructor
-public class ProjectMember {
+public class ProjectMemberPk {
 
+    private String userId;
 
-
-    private ProjectMemberPk projectMemberPk;
-
-    private String role;
-
-    private Project project;
-
+    private Long projectId;
 }
