@@ -17,10 +17,10 @@ public class ProjectMemberController {
     @GetMapping("/{projectId}/members")
     public String members(@PathVariable("projectId") Long projectId, Model model) {
         model.addAttribute("projectId", projectId);
-        
+
         return "projectMemberAdd";
     }
-    
+
     @PostMapping("/{projectId}/members")
     public String addMember(@PathVariable("projectId") Long projectId,
                             @RequestParam(name = "memberId") String memberId,
@@ -32,7 +32,7 @@ public class ProjectMemberController {
         model.addAttribute("member", memberDto);
 
         projectFeignClient.addMember(projectId, memberDto);
-        
+
         return "redirect:/projects/project/" + projectId;
     }
 

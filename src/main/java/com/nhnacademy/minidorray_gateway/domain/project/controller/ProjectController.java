@@ -1,29 +1,22 @@
 package com.nhnacademy.minidorray_gateway.domain.project.controller;
 
-import com.nhnacademy.minidorray_gateway.domain.project.dto.*;
+import com.nhnacademy.minidorray_gateway.domain.project.dto.ProjectDto;
+import com.nhnacademy.minidorray_gateway.domain.project.dto.ProjectMemberDto;
+import com.nhnacademy.minidorray_gateway.domain.project.dto.TaskDto;
 import com.nhnacademy.minidorray_gateway.domain.project.feignClient.TaskClient;
 import com.nhnacademy.minidorray_gateway.domain.project.model.Project;
-import com.nhnacademy.minidorray_gateway.domain.project.model.ProjectMember;
-import com.nhnacademy.minidorray_gateway.domain.project.model.Task;
-import com.nhnacademy.minidorray_gateway.domain.user.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-@Slf4j
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
 
     @Autowired
     private TaskClient projectFeignClient;
-
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/members")
     public String getMemberAddPage(){
@@ -74,13 +67,10 @@ public class ProjectController {
         ProjectDto project = projectFeignClient.getProjectById(projectId);
         List<ProjectMemberDto>memberList=projectFeignClient.getMembers(projectId);
         List<TaskDto>taskList=projectFeignClient.getTasks(projectId);
-        List<TagResponseDTO> tags = projectFeignClient.getTagByProjectId(projectId);
-
 
         model.addAttribute("project", project);
-        model.addAttribute("members", memberList);
+        model.addAttribute("member", memberList);
         model.addAttribute("tasks", taskList);
-        model.addAttribute("tags",tags);
         return "projectView";
     }
 
