@@ -122,8 +122,7 @@ public interface TaskClient {
 
     // TaskId로 Task에 등록된 Tag List로 가져오기
     @GetMapping("/tasks/{taskId}/tags")
-    public List<TagDTO> getTaskTagsByTaskId(@PathVariable("taskId") Long taskId);
-
+    public List<TagResponseDTO> getTaskTagsByTaskId(@PathVariable("taskId") Long taskId);
 
     @PostMapping("/milestones")
     public MilestoneDTO createMilestone(@RequestBody MilestoneDTO milestoneDTO);
@@ -134,6 +133,13 @@ public interface TaskClient {
 
     @DeleteMapping("/tags/{tagId}")
     public void deleteTag(@PathVariable Long tagId);
+
+    @PutMapping("/tags/{tagId}")
+    public TagDTO updateTag(@PathVariable("tagId") Long tagId, @RequestBody TagDTO tagDTO);
+
+    @GetMapping("/tags/{tagId}")
+    public TagResponseDTO getTagById(@PathVariable Long tagId);
+
 
     @DeleteMapping("/comments/{commentId}")
     public ResponseEntity<Void> deleteComment(@PathVariable("commentId") Long commentId);

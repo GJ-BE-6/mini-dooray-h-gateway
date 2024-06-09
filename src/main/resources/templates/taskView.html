@@ -20,36 +20,56 @@
         <button type="submit">선택</button>
     </form>
     </ul>
-    <p><strong>태그 목록:</strong>
-    <ul th:each="tag : ${tags}">
-        <li th:text="${tag.tagName}"></li>
-    </ul>
 
-</div>
-<div>
-    <p><strong>코멘트 목록:</strong>
-    <ul th:each="comment : ${comments}">
+    <p><strong>설정된 태그 목록:</strong></p>
+    <ul th:each="tag : ${settingTags}">
         <li>
-            <p><strong>작성자:</strong> <span th:text="${comment.userId}"></span></p>
-            <p><strong>내용:</strong> <span th:text="${comment.content}"></span></p>
-
-            <!-- 삭제 버튼 -->
-            <form th:action="@{/comments/{commentId}(commentId=${comment.id})}" method="post"
-                  onsubmit="return confirm('정말 삭제하시겠습니까?');">
-                <input type="hidden" name="_method" value="delete">
-                <button type="submit">삭제</button>
+            <p th:text="${tag.tagName}" th:href="@{/tags/}"></p>
+            <!-- 태스크에서 설정 취소 버튼 -->
+            <form th:action="@{/tasks/tag(tagId=${tag.tagId}, taskId=${task.taskId})}" th:method="delete"
+                  onsubmit="return confirm('해당 태스크에서 설정 취소하시겠습니까?');">
+                <button type="submit">설정 취소</button>
             </form>
         </li>
     </ul>
-    <p><strong>코멘트 추가하기</strong></p>
-    <form th:action="@{/comments/tasks/{taskId}/comments(taskId=${task.id})}" method="post">
-        <label for="userId">멤버 아이디:</label>
-        <input type="text" id="userId" name="userId" required>
-        <label for="content">코멘트 내용:</label>
-        <input type="text" id="content" name="content" required>
-        <button type="submit">코멘트 추가하기</button>
-    </form>
+
+    <p><strong>설정 가능한 태그 목록:</strong>
+    <ul th:each="tag : ${tags}">
+        <li>
+            <p th:text="${tag.tagName}" th:href="@{/tags/}"></p>
+            <!-- 태스크에 설정 버튼 -->
+            <form th:action="@{/tasks/tag(tagId=${tag.tagId},taskId=${task.taskId})}" th:method="post">
+                <button type="submit">태스크에 설정</button>
+            </form>
+        </li>
+    </ul>
+
 </div>
+<!--<div>-->
+<!--    <p><strong>코멘트 목록:</strong>-->
+<!--    <ul th:each="comment : ${comments}">-->
+<!--        <li>-->
+<!--            <p><strong>작성자:</strong> <span th:text="${comment.userId}"></span></p>-->
+<!--            <p><strong>내용:</strong> <span th:text="${comment.content}"></span></p>-->
+
+<!--            &lt;!&ndash; 삭제 버튼 &ndash;&gt;-->
+<!--            <form th:action="@{/comments/{commentId}(commentId=${comment.id})}" method="post"-->
+<!--                  onsubmit="return confirm('정말 삭제하시겠습니까?');">-->
+<!--                <input type="hidden" name="_method" value="delete">-->
+<!--                <button type="submit">삭제</button>-->
+<!--            </form>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--    <p><strong>코멘트 추가하기</strong></p>-->
+<!--    <form th:action="@{/comments/tasks/{taskId}/comments(taskId=${task.id})}" method="post">-->
+<!--        <label for="userId">멤버 아이디:</label>-->
+<!--        <input type="text" id="userId" name="userId" required>-->
+<!--        <label for="content">코멘트 내용:</label>-->
+<!--        <input type="text" id="content" name="content" required>-->
+<!--        <button type="submit">코멘트 추가하기</button>-->
+<!--    </form>-->
+<!--</div>-->
+
 
 
 </body>

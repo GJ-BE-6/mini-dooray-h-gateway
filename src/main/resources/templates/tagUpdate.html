@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tag update</title>
+</head>
+<body>
+<h1>태그 수정</h1>
+    <form th:action="@{/tags/{tagId}(tagId=${tag.tagId})}" th:method="put">
+        <label for="tagName">태그 이름:</label>
+        <input type="text" id="tagName" name="tagName" th:value="${tag.tagName}" required>
+        <button type="submit">수정</button>
+    </form>
+</body>
+</html>
