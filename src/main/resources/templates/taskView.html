@@ -112,19 +112,19 @@
         <p><strong>테스크 상태 :</strong> <span th:text="${task.taskStatus}">task Status</span></p>
     </div>
 
-<!--    <div class="section">-->
-<!--        <div class="section-header">마일스톤 목록</div>-->
-<!--        <ul th:each="milestone : ${milestones}">-->
-<!--            <li>-->
-<!--                <strong>마일스톤 이름:</strong> <span th:text="${milestone.milestoneName}"></span><br>-->
-<!--                <strong>시작일:</strong> <span th:text="${milestone.startDate}"></span><br>-->
-<!--                <strong>마감일:</strong> <span th:text="${milestone.dueDate}"></span><br>-->
-<!--                <form th:action="@{'/milestones/' + ${milestone.milestoneId} + '/tasks/' + ${task.taskId}}" method="post" style="display:inline;">-->
-<!--                    <button type="submit">선택</button>-->
-<!--                </form>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </div>-->
+    <div class="section">
+        <div class="section-header">마일스톤 목록</div>
+        <ul th:each="milestone : ${milestones}">
+            <li>
+                <strong>마일스톤 이름:</strong> <span th:text="${milestone.milestoneName}"></span><br>
+                <strong>시작일:</strong> <span th:text="${milestone.startDate}"></span><br>
+                <strong>마감일:</strong> <span th:text="${milestone.dueDate}"></span><br>
+                <form th:action="@{'/milestones/' + ${milestone.milestoneId} + '/tasks/' + ${task.taskId}}" method="post" style="display:inline;">
+                    <button type="submit">선택</button>
+                </form>
+            </li>
+        </ul>
+    </div>
 
     <div class="section">
         <div class="section-header">설정된 태그 목록</div>
