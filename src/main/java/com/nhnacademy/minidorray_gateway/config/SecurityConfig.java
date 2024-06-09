@@ -64,7 +64,7 @@ public class SecurityConfig implements WebMvcConfigurer {
 
         http.logout(logout ->
                 logout.logoutUrl("/logout")
-                        .logoutSuccessUrl("/home")
+                        .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
         );
