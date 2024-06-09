@@ -45,17 +45,28 @@ public class TaskController {
         taskFeignClient.createTask(task);
         return "redirect:/tasks";
     }
-//
-//    @PutMapping("/{taskId}")
-//    public String updateTask(@PathVariable Long taskId, @ModelAttribute Task task) {
-//        taskService.updateTask(taskId, task);
-//        return "redirect:/tasks";
-//    }
-//
-//    @DeleteMapping("/{taskId}")
-//    public String deleteTask(@PathVariable Long taskId) {
-//        taskService.deleteTask(taskId);
-//        return "redirect:/tasks";
-//    }
+
+
+    // Task 수정 페이지
+    @GetMapping("/tasks/{id}")
+    public String editTaskForm(@PathVariable Long id, Model model) {
+        Task task = taskFeignClient.getTask(id);
+        model.addAttribute("task", task);
+        return "taskEdit"; // 수정 폼 페이지 이름
+    }
+
+    // Task 수정
+    @PutMapping("/tasks")
+    public void updateTask(@RequestBody Task task) {
+        taskFeignClient.updateTask(task);
+    }
+
+    // Task 삭제
+    @DeleteMapping("/tasks/{id}")
+    public void deleteTask(@PathVariable Long id) {
+        taskFeignClient.deleteTask(id);
+    }
+
+
 
 }

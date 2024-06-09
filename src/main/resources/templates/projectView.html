@@ -17,10 +17,18 @@
     </ul>
     </p>
     <p><strong>업무목록:</strong>
-    <ul>
-        <li th:each="task : ${tasks}" th:text="${Task}">
-            <a th:href="@{/projects/tasks/{id}(id=${task.id})}" th:text="${task.name}"></a>
-        </li>
+    <ul  th:each="task : ${tasks}">
+
+    <li>
+        <a th:href="@{/projects/tasks/{id}(id=${task.id})}" th:text="${task.name}"></a>
+        <!-- 수정 버튼 -->
+        <button th:onclick="'window.location.href=\'/projects/tasks/' + ${task.id} + '\';'">수정</button>
+        <!-- 삭제 버튼 -->
+        <form th:action="@{/projects/tasks/{id}(id=${task.id})}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">삭제</button>
+        </form>
+    </li>
     </ul>
 
 </div>
