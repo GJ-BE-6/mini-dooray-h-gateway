@@ -23,16 +23,19 @@ public class TaskController {
     private TaskClient taskFeignClient;
 
     @GetMapping("/{id}")
-    public String getTasks(@PathVariable Long id, Model model) {
+    public String getTasks(@PathVariable Long id, Model model, @RequestParam Long projectId) {
         TaskDto task = taskFeignClient.getTask(id);
         List<CommentResponseDTO> commentList = taskFeignClient.getComments(id);
         if(commentList==null){
             commentList = new ArrayList<>();
         }
-        List<MilestoneDTO>milestoneList= taskFeignClient.getMilestoneByTaskId(id);
-        if(milestoneList==null){
-            milestoneList = new ArrayList<>();
-        }
+        //List<MilestoneDTO>milestoneList= taskFeignClient.getMilestoneByTaskId(id);
+
+        List<MilestoneDTO>milestoneList2=taskFeignClient.getMilestones(projectId);
+
+//        if(milestoneList==null){
+//            milestoneList = new ArrayList<>();
+//        }
         List<TagResponseDTO> tagList= taskFeignClient.getTagByProjectId(task.getProjectId());
         if(tagList==null){
             tagList = new ArrayList<>();
@@ -41,9 +44,10 @@ public class TaskController {
         if(settingTagList==null){
             settingTagList = new ArrayList<>();
         }
+        model.addAttribute("projectId", projectId);
         model.addAttribute("task", task);
         model.addAttribute("comments", commentList);
-        model.addAttribute("milestones", milestoneList);
+        model.addAttribute("milestones2", milestoneList2);
         model.addAttribute("tags", tagList);
         model.addAttribute("settingTags", settingTagList);
         return "taskView";

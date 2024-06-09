@@ -93,7 +93,7 @@ public interface TaskClient {
 
     // Task에 Milestone 등록
     @PostMapping("/milestones/{milestoneId}/tasks/{taskId}")
-    public ResponseEntity<MilestoneDTO> setMilestoneToTask(@PathVariable("milestoneId") Long milestoneId, @PathVariable("taskId") Long taskId);
+    MilestoneDTO setMilestoneToTask(@PathVariable("milestoneId") Long milestoneId, @PathVariable("taskId") Long taskId);
 
     // Task에서 Milestone 삭제
     @DeleteMapping("/tasks/milestones/{milestoneId}")
@@ -101,7 +101,7 @@ public interface TaskClient {
 
     // Project에 등록된 Milestone List로 가져오기
     @GetMapping("/projects/{projectId}/milestones")
-    public ResponseEntity<List<MilestoneDTO>> getMilestones(@PathVariable("projectId") Long projectId);
+    public List<MilestoneDTO> getMilestones(@PathVariable("projectId") Long projectId);
 
     // TaskId로 Task에 등록된 Milestone 가져오기
     @GetMapping("/tasks/{taskId}/milestone")
