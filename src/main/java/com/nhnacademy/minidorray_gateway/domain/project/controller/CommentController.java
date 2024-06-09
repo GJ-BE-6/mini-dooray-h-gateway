@@ -4,11 +4,9 @@ package com.nhnacademy.minidorray_gateway.domain.project.controller;
 import com.nhnacademy.minidorray_gateway.domain.project.dto.CommentDTO;
 import com.nhnacademy.minidorray_gateway.domain.project.feignClient.TaskClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/comments")
@@ -23,15 +21,12 @@ public class CommentController {
         return "redirect:/projects/tasks/" + taskId;
     }
 
-//    @PutMapping("/{commentId}")
-//    public String updateComment(@PathVariable Long commentId, @ModelAttribute Comment comment) {
-//        commentService.updateComment(commentId, comment);
-//        return "redirect:/tasks";
-//    }
-//
-//    @DeleteMapping("/{commentId}")
-//    public String deleteComment(@PathVariable Long commentId) {
-//        commentService.deleteComment(commentId);
-//        return "redirect:/tasks";
-//    }
+
+
+    // 코멘트 삭제
+    @DeleteMapping("/{commentId}")
+    public ResponseEntity<Void> deleteComment(@PathVariable("commentId") Long commentId) {
+        commentFeignClient.deleteComment(commentId);
+        return ResponseEntity.noContent().build();
+    }
 }

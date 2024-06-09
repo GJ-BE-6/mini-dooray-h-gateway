@@ -131,4 +131,7 @@ public interface TaskClient {
 
     @PostMapping("/tags")
     public ResponseEntity<TagDTO> createTag(@RequestBody TagDTO tagDTO);
+
+    @DeleteMapping("/comments/{commentId}")
+    public ResponseEntity<Void> deleteComment(@PathVariable("commentId") Long commentId);
 }
