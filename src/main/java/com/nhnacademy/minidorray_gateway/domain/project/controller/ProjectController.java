@@ -67,10 +67,13 @@ public class ProjectController {
         ProjectDto project = projectFeignClient.getProjectById(projectId);
         List<ProjectMemberDto>memberList=projectFeignClient.getMembers(projectId);
         List<TaskDto>taskList=projectFeignClient.getTasks(projectId);
+        List<TagResponseDTO> tags = projectFeignClient.getTagByProjectId(projectId);
+
 
         model.addAttribute("project", project);
         model.addAttribute("member", memberList);
         model.addAttribute("tasks", taskList);
+        model.addAttribute("tags",tags);
         return "projectView";
     }
 

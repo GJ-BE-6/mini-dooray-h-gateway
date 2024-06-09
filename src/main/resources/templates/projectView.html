@@ -39,6 +39,20 @@
         </ul>
     </div>
 
+    <p><strong>태그목록:</strong>
+    <div th:if="${not #lists.isEmpty(tags)}">
+        <ul th:each="tag : ${tags}">
+            <li>
+                <p th:text="${tag.tagName}" th:href="@{/tags/}"></p>
+                <!-- 삭제 버튼 -->
+                <form th:action="@{/tags/{tagId}(tagId=${tag.tagId})}" th:method="delete"
+                      onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                    <button type="submit">삭제</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
 
 </div>
 <a th:href="@{/tasks/{projectId}(projectId=${project.projectId})}">테스크 추가</a>

@@ -110,7 +110,7 @@ public interface TaskClient {
 
     // ProjectId로 프로젝트에 등록된 Tag List 가져오기
     @GetMapping("/projects/{projectId}/tags")
-    List<TagDTO> getTagByProjectId(@PathVariable("projectId") Long projectId);
+    List<TagResponseDTO> getTagByProjectId(@PathVariable("projectId") Long projectId);
 
     // Task에 Tag 등록
     @PostMapping("/tasks/tag")
@@ -122,7 +122,7 @@ public interface TaskClient {
 
     // TaskId로 Task에 등록된 Tag List로 가져오기
     @GetMapping("/tasks/{taskId}/tags")
-    public ResponseEntity<List<TagDTO>> getTaskTagsByTaskId(@PathVariable("taskId") Long taskId);
+    List<TagResponseDTO> getTaskTagsByTaskId(@PathVariable("taskId") Long taskId);
 
 
     @PostMapping("/milestones")
