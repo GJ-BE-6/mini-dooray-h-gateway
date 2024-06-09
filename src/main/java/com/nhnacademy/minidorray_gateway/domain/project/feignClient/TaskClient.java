@@ -24,7 +24,7 @@ public interface TaskClient {
 
     // ProjectId에 해당하는 프로젝트 가져오기
     @GetMapping("/projects/{id}")
-    Project getProjectById(@PathVariable("id") Long id);
+    ProjectDto getProjectById(@PathVariable("id") Long id);
 
     // 프로젝트 생성 (생성자가 자동으로 관리자로 지정)
     @PostMapping("/projects/users/{id}")
@@ -50,7 +50,7 @@ public interface TaskClient {
 
     // 해당 프로젝트 멤버 조회
     @GetMapping("/projects/{id}/members")
-    List<ProjectMember> getMembers(@PathVariable Long id);
+    List<ProjectMemberDto> getMembers(@PathVariable Long id);
 
     // 해당 프로젝트에서 특정 멤버 삭제
     @DeleteMapping("/projects/{projectId}/members/{memberId}")
@@ -61,7 +61,7 @@ public interface TaskClient {
 
     // ProjectId에 해당하는 Task 목록 조회
     @GetMapping("/projects/{id}/tasks")
-    List<Task> getTasks(@PathVariable Long id);
+    List<TaskDto> getTasks(@PathVariable Long id);
 
     // 특정 Task 조회
     @GetMapping("/projects/tasks/{id}")

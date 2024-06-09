@@ -2,6 +2,8 @@ package com.nhnacademy.minidorray_gateway.domain.project.controller;
 
 import com.nhnacademy.minidorray_gateway.domain.project.dto.MemberDto;
 import com.nhnacademy.minidorray_gateway.domain.project.dto.ProjectDto;
+import com.nhnacademy.minidorray_gateway.domain.project.dto.ProjectMemberDto;
+import com.nhnacademy.minidorray_gateway.domain.project.dto.TaskDto;
 import com.nhnacademy.minidorray_gateway.domain.project.feignClient.TaskClient;
 import com.nhnacademy.minidorray_gateway.domain.project.model.Project;
 import com.nhnacademy.minidorray_gateway.domain.project.model.ProjectMember;
@@ -65,9 +67,9 @@ public class ProjectController {
 
     @GetMapping("/project/{projectId}")
     public String getProject(@PathVariable Long projectId, Model model) {
-        Project project = projectFeignClient.getProjectById(projectId);
-        List<ProjectMember>memberList=projectFeignClient.getMembers(projectId);
-        List<Task>taskList=projectFeignClient.getTasks(projectId);
+        ProjectDto project = projectFeignClient.getProjectById(projectId);
+        List<ProjectMemberDto>memberList=projectFeignClient.getMembers(projectId);
+        List<TaskDto>taskList=projectFeignClient.getTasks(projectId);
 
         model.addAttribute("project", project);
         model.addAttribute("member", memberList);

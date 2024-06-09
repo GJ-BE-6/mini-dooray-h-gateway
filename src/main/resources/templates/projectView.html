@@ -7,8 +7,8 @@
 <body>
 <h1>프로젝트 세부내역</h1>
 <div>
-    <p><strong>프로젝트 이름:</strong> <span th:text="${project.name}"></span></p>
-    <p><strong>상태:</strong> <span th:text="${project.status}"></span></p>
+    <p><strong>프로젝트 이름:</strong> <span th:text="${project.projectName}"></span></p>
+    <p><strong>상태:</strong> <span th:text="${project.projectStatus}"></span></p>
     <p><strong>멤버목록:</strong>
 
 <!--    <div th:if="${not #lists.isEmpty(member)}">-->
@@ -41,10 +41,10 @@
 
 
 </div>
-<a th:href="@{/tasks/{projectId}(projectId=${project.id})}">테스크 추가</a>
-<a th:href="@{/milestones/{projectId}(projectId=${project.id})}">마일스톤 추가</a>
-<a th:href="@{/tags/{projectId}(projectId=${project.id})}">태그 추가</a>
-<a th:href="@{/projects/members/{projectId}(projectId=${project.id})}">멤버 추가</a>
+<a th:href="@{/tasks/{projectId}(projectId=${project.projectId})}">테스크 추가</a>
+<a th:href="@{/milestones/{projectId}(projectId=${project.projectId})}">마일스톤 추가</a>
+<a th:href="@{/tags/{projectId}(projectId=${project.projectId})}">태그 추가</a>
+<a th:href="@{/projects/{projectId}/members(projectId=${project.projectId})}">멤버 추가</a>
 
 </body>
 </html>
