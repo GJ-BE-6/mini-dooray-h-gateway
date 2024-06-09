@@ -1,21 +1,137 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
-    <title>Home</title>
+    <meta charset="UTF-8">
+    <title>홈</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #007BFF;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            margin-left: 20px;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        header nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+        header nav ul.center {
+            margin: 0 auto;
+        }
+        header nav ul li {
+            display: inline;
+        }
+        header nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav ul li a:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 <header>
+    <a href="/home" class="logo">Dooray!</a>
     <nav>
-        <ul>
+        <ul class="center">
             <li><a href="/home">Home</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="/dummy1">더미버튼1</a></li>
+            <li><a href="/dummy2">더미버튼2</a></li>
+        </ul>
+        <ul id="auth-buttons">
+            <li id="login"><a href="/login">로그인</a></li>
+            <li id="register"><a href="/register">회원 가입</a></li>
+            <li id="profile" style="display:none;"><a href="/profile">내 정보</a></li>
+            <li id="logout" style="display:none;"><a href="/logout">로그아웃</a></li>
         </ul>
     </nav>
 </header>
-<main>
+<div class="container">
     <h1>Welcome to the Home Page</h1>
     <p th:text="'Hello, ' + ${#authentication.name} + '!'">Hello, User!</p>
-    <a th:href="@{/projects/{userId}(userId=${#authentication.name})}" >나의 프로젝트 목록 확인</a>
-</main>
+    <a class="btn" th:href="@{/projects/{userId}(userId=${#authentication.name})}">나의 프로젝트 목록 확인</a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        checkLoginStatus();
+    });
+
+    function checkLoginStatus() {
+        fetch('/api/check-login', {
+            method: 'GET',
+            credentials: 'include' // 세션 쿠키를 포함하여 요청
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.loggedIn) {
+                    document.getElementById('login').style.display = 'none';
+                    document.getElementById('register').style.display = 'none';
+                    document.getElementById('profile').style.display = 'inline';
+                    document.getElementById('logout').style.display = 'inline';
+                } else {
+                    document.getElementById('login').style.display = 'inline';
+                    document.getElementById('register').style.display = 'inline';
+                    document.getElementById('profile').style.display = 'none';
+                    document.getElementById('logout').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking login status:', error);
+            });
+    }
+</script>
 </body>
 </html>
