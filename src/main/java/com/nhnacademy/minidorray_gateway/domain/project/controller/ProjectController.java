@@ -5,18 +5,25 @@ import com.nhnacademy.minidorray_gateway.domain.project.feignClient.TaskClient;
 import com.nhnacademy.minidorray_gateway.domain.project.model.Project;
 import com.nhnacademy.minidorray_gateway.domain.project.model.ProjectMember;
 import com.nhnacademy.minidorray_gateway.domain.project.model.Task;
+import com.nhnacademy.minidorray_gateway.domain.user.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+@Slf4j
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
 
     @Autowired
     private TaskClient projectFeignClient;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/members")
     public String getMemberAddPage(){
@@ -71,7 +78,7 @@ public class ProjectController {
 
 
         model.addAttribute("project", project);
-        model.addAttribute("member", memberList);
+        model.addAttribute("members", memberList);
         model.addAttribute("tasks", taskList);
         model.addAttribute("tags",tags);
         return "projectView";

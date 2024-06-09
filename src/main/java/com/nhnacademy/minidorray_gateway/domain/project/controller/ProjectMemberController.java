@@ -33,6 +33,18 @@ public class ProjectMemberController {
 
         projectFeignClient.addMember(projectId, memberDto);
         
-        return "redirect:/projects/" + memberId;
+        return "redirect:/projects/project/" + projectId;
+    }
+
+    @GetMapping("/{projectId}/members/{memberId}")
+    public String deleteMember(@PathVariable("projectId") Long projectId,
+                               @PathVariable("memberId") String memberId,
+                               Model model) {
+
+        projectFeignClient.deleteMember(projectId, memberId);
+
+        model.addAttribute("projectId", projectId);
+
+        return "redirect:/projects/project/" + projectId;
     }
 }
