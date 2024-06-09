@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping("/")
     public String home() {
-        return "home";
+        return "redirect:/home";
     }
 
     @GetMapping("/auth")
@@ -29,7 +29,7 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
         return "register";
@@ -50,7 +50,7 @@ public class UserController {
         return "redirect:/home";
     }
 
-    @PostMapping("/user")
+    @PostMapping("/register")
     public String registerUser(@ModelAttribute User user) {
         userService.registerUser(user);
         return "redirect:/login";

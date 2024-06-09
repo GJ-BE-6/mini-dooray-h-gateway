@@ -39,6 +39,8 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/home").setViewName("home");
+        registry.addViewController("/").setViewName("home");
+
     }
 
     @Bean
@@ -56,7 +58,7 @@ public class SecurityConfig implements WebMvcConfigurer {
 
         http.authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                        .requestMatchers("/auth", "/", "/user", "/api/account/**").permitAll()
+                        .requestMatchers("/home", "/register", "/auth", "/", "/user", "/api/account/**").permitAll()
                         .anyRequest().authenticated()
         );
 
