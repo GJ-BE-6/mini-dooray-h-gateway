@@ -6,6 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class CommentResponseDTO {
+    private Long commentId;
     private String comment;
     private String userId;
     private Long taskId;

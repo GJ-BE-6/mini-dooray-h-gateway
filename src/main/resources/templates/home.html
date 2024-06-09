@@ -91,9 +91,8 @@
     <a href="/home" class="logo">Dooray!</a>
     <nav>
         <ul class="center">
-            <li><a href="/home">Home</a></li>
-            <li><a href="/dummy1">더미버튼1</a></li>
-            <li><a href="/dummy2">더미버튼2</a></li>
+            <li><h1><a href="/home">Home</a></h1></li>
+
         </ul>
         <ul class="right" id="auth-buttons">
             <li id="login"><a href="/login">로그인</a></li>
@@ -104,7 +103,7 @@
     </nav>
 </header>
 <div class="container">
-    <h1>Welcome to the Home Page</h1>
+    <h1>두레이에 오신 것을 환영합니다! </h1>
     <p th:text="'Hello, ' + ${#authentication.name} + '!'">Hello, User!</p>
     <a class="btn" th:href="@{/projects/{userId}(userId=${#authentication.name})}">나의 프로젝트 목록 확인</a>
 </div>
