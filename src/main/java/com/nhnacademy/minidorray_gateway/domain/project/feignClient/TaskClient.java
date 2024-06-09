@@ -126,7 +126,7 @@ public interface TaskClient {
 
 
     @PostMapping("/milestones")
-    public ResponseEntity<MilestoneDTO> createMilestone(@RequestBody MilestoneDTO milestoneDTO);
+    public MilestoneDTO createMilestone(@RequestBody MilestoneDTO milestoneDTO);
 
 
     @PostMapping("/tags")
