@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>마일스톤 추가하기</h1>
-<form th:action="@{/milestones}" method="post">
+<form th:action="@{/milestones/{projectId}(projectId=${projectId})}" method="post">
     <label for="name">마일스톤 이름:</label>
     <input type="text" id="name" name="name">
     <label for="startDate">startdate:</label>

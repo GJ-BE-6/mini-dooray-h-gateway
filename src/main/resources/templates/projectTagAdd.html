@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>태그 추가하기</h1>
-<form th:action="@{/tags}" method="post">
+<form th:action="@{/tags/{projectId}(projectId=${projectId})}" method="post">
     <label for="name">태그명:</label>
     <input type="text" id="name" name="name">
     <button type="submit">태그추가하기</button>

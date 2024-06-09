@@ -11,36 +11,33 @@
     <p><strong>상태:</strong> <span th:text="${project.status}"></span></p>
     <p><strong>멤버목록:</strong>
     <ul th:each="member : ${member}">
-        멤버아이디:
-        <li th:text="${member.projectMemberPk.userId}"></li>
-        멤버이름:
-        <li th:text="${member.project.name}"></li>
-        멤버역할:
-        <li th:text="${member.role}"></li>
+      멤버아이디: <li th:text="${member.projectMemberPk.userId}" ></li>
+        멤버이름: <li th:text="${member.project.name}" ></li>
+        멤버역할:<li th:text="${member.role}" ></li>
     </ul>
     </p>
     <p><strong>업무목록:</strong>
-    <ul th:each="task : ${tasks}">
+    <ul  th:each="task : ${tasks}">
 
-        <li>
-            <a th:href="@{/projects/tasks/{id}(id=${task.id})}" th:text="${task.name}"></a>
-            <!-- 수정 버튼 -->
-            <button th:onclick="'window.location.href=\'/projects/tasks/' + ${task.id} + '\';'">수정</button>
-            <!-- 삭제 버튼 -->
-            <form th:action="@{/projects/tasks/{id}(id=${task.id})}" method="post"
-                  onsubmit="return confirm('정말 삭제하시겠습니까?');">
-                <input type="hidden" name="_method" value="delete">
-                <button type="submit">삭제</button>
-            </form>
-        </li>
+    <li>
+        <a th:href="@{/projects/tasks/{id}(id=${task.id})}" th:text="${task.name}"></a>
+        <!-- 수정 버튼 -->
+        <button th:onclick="'window.location.href=\'/projects/tasks/' + ${task.id} + '\';'">수정</button>
+        <!-- 삭제 버튼 -->
+        <form th:action="@{/projects/tasks/{id}(id=${task.id})}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">삭제</button>
+        </form>
+    </li>
     </ul>
 
 
+
 </div>
-<a th:href="@{/tasks/{projectId}(projectId=${project.id})}">테스크 추가</a>
-<a th:href="@{/milestones/{projectId}(projectId=${project.id})}">마일스톤 추가</a>
-<a th:href="@{/tags/{projectId}(projectId=${project.id})}">태그 추가</a>
-<a th:href="@{/members/{projectId}(projectId=${project.id})}">멤버 추가</a>
+<a th:href="@{/tasks/projectId(projectId=${project.projectId})}">테스크 추가</a>
+<a th:href="@{/milestones/projectId(projectId=${project.projectId})}">마일스톤 추가</a>
+<a th:href="@{/tags/projectId(projectId=${project.projectId})}">태그 추가</a>
+<a th:href="@{/projects/members(projectId=${project.projectId})}">멤버 추가</a>
 
 </body>
 </html>

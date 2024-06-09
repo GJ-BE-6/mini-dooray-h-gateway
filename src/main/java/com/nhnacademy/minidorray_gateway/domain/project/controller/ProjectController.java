@@ -38,10 +38,15 @@ public class ProjectController {
     }
 
     @PostMapping("/{projectId}/members")
-    public String addMember(@PathVariable Long projectId, @ModelAttribute MemberDto user) {
+    public String addMember(@PathVariable("projectId") Long projectId, @ModelAttribute MemberDto user) {
         projectFeignClient.addMember(projectId, user);
         return "redirect:/projects/" + projectId;
     }
+
+
+
+
+
 
     @GetMapping("/{projectId}")
     public String getProject(@PathVariable Long projectId, Model model) {

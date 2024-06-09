@@ -33,10 +33,10 @@ public class TaskController {
         return "taskView";
     }
 
-    @GetMapping("/task")
-    public String getAddTasks() {
-
-        return "projectTaskAdd";
+    @GetMapping("/projectId")
+    public String getAddTasks(@RequestParam("projectId") Long projectId, Model model) {
+        model.addAttribute("projectId", projectId);
+        return "projectTaskAdd"; // The view name for adding a task
     }
 
 

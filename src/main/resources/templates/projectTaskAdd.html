@@ -6,7 +6,9 @@
 </head>
 <body>
 <h1>테스크 추가하기</h1>
-<form th:action="@{/tasks}" method="post">
+
+
+<form th:action="@{/tasks/{projectId}(projectId=${projectId})}" method="post">
     <label for="taskName">테스크 이름:</label>
     <input type="text" id="taskName" name="taskName" required>
 
