@@ -110,15 +110,15 @@ public interface TaskClient {
 
     // ProjectId로 프로젝트에 등록된 Tag List 가져오기
     @GetMapping("/projects/{projectId}/tags")
-    public ResponseEntity<List<TagDTO>> getTagByProjectId(@PathVariable("projectId") Long projectId);
+    List<TagDTO> getTagByProjectId(@PathVariable("projectId") Long projectId);
 
     // Task에 Tag 등록
     @PostMapping("/tasks/tag")
-    public ResponseEntity<Void> setTagToTask(@RequestBody TaskTagDTO taskTagDTO);
+    public void setTagToTask(@RequestBody TaskTagDTO taskTagDTO);
 
     // Task에서 Tag 제거
     @DeleteMapping("/tasks/tag")
-    public ResponseEntity<Void> deleteTagFromTask(@RequestBody TaskTagDTO taskTagDTO);
+    public void deleteTagFromTask(@RequestBody TaskTagDTO taskTagDTO);
 
     // TaskId로 Task에 등록된 Tag List로 가져오기
     @GetMapping("/tasks/{taskId}/tags")
@@ -131,6 +131,9 @@ public interface TaskClient {
 
     @PostMapping("/tags")
     public ResponseEntity<TagDTO> createTag(@RequestBody TagDTO tagDTO);
+
+    @DeleteMapping("/tags/{tagId}")
+    public void deleteTag(@PathVariable Long tagId);
 
     @DeleteMapping("/comments/{commentId}")
     public ResponseEntity<Void> deleteComment(@PathVariable("commentId") Long commentId);

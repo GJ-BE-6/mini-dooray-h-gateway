@@ -1,9 +1,6 @@
 package com.nhnacademy.minidorray_gateway.domain.project.controller;
 
-import com.nhnacademy.minidorray_gateway.domain.project.dto.MemberDto;
-import com.nhnacademy.minidorray_gateway.domain.project.dto.ProjectDto;
-import com.nhnacademy.minidorray_gateway.domain.project.dto.ProjectMemberDto;
-import com.nhnacademy.minidorray_gateway.domain.project.dto.TaskDto;
+import com.nhnacademy.minidorray_gateway.domain.project.dto.*;
 import com.nhnacademy.minidorray_gateway.domain.project.feignClient.TaskClient;
 import com.nhnacademy.minidorray_gateway.domain.project.model.Project;
 import com.nhnacademy.minidorray_gateway.domain.project.model.ProjectMember;

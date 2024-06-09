@@ -43,7 +43,7 @@
 </div>
 <a th:href="@{/tasks/{projectId}(projectId=${project.projectId})}">테스크 추가</a>
 <a th:href="@{/milestones/{projectId}(projectId=${project.projectId})}">마일스톤 추가</a>
-<a th:href="@{/tags/{projectId}(projectId=${project.projectId})}">태그 추가</a>
+<a th:href="@{/tags(projectId=${project.projectId})}">태그 추가</a>
 <a th:href="@{/projects/{projectId}/members(projectId=${project.projectId})}">멤버 추가</a>
 
 </body>
