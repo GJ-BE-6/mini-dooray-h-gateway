@@ -7,22 +7,22 @@
 <body>
 <h1>테스크 세부내역</h1>
 <div>
-    <p><strong>테스크이름:</strong> <span th:text="${task.name}">task Name</span></p>
-    <p><strong>테스크 상태 :</strong> <span th:text="${task.status}">task Status</span></p>
-    <p><strong>테스크 내용 :</strong> <span th:text="${task.description}">task description</span></p>
+    <p><strong>테스크이름:</strong> <span th:text="${task.taskName}">task Name</span></p>
+    <p><strong>테스크 내용 :</strong> <span th:text="${task.taskDescription}">task description</span></p>
+    <p><strong>테스크 상태 :</strong> <span th:text="${task.taskStatus}">task Status</span></p>
 
     <p><strong>마일스톤 목록:</strong>
     <ul th:each="milestone : ${milestones}">
-        <li th:text="${milestone.name}"></li>
+        <li th:text="${milestone.milestoneName}"></li>
         <li th:text="${milestone.startDate}"></li>
         <li th:text="${milestone.dueDate}"></li>
-    <form th:action="@{/milestones/{milestoneId}/tasks/{taskId}(milestoneId=${milestone.id}, taskId=${task.id})}" method="post" style="display:inline;">
+    <form th:action="@{/milestones/{milestoneId}/tasks/{taskId}(milestoneId=${milestone.milestoneId}, taskId=${task.taskId})}" method="post" style="display:inline;">
         <button type="submit">선택</button>
     </form>
     </ul>
     <p><strong>태그 목록:</strong>
     <ul th:each="tag : ${tags}">
-        <li th:text="${tag.name}"></li>
+        <li th:text="${tag.tagName}"></li>
     </ul>
 
 </div>
