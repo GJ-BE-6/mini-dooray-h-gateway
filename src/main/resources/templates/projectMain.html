@@ -12,6 +12,6 @@
     </li>
 </ul>
 <p th:if="${#lists.isEmpty(projects)}">프로젝트 목록이 없습니다.</p>
-<a th:href="@{/projects/users/${userId}}" >프로젝트 추가하기</a>
+<a th:href="@{/projects/users/{userId}(userId=${userId})}" >프로젝트 추가하기</a>
 </body>
 </html>

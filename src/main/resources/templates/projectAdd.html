@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>프로젝트 추가</h1>
-<form th:action="@{/projects}" method="post">
+<form th:action="@{/projects/users/{userId}(userId=${userId})}" method="post">
     <label for="name">Project Name:</label>
     <input type="text" id="name" name="name">
     <label for="status">Status:</label>

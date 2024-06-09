@@ -24,16 +24,17 @@ public class ProjectController {
         return "projectMemberAdd";
     }
 
-    @GetMapping("/add")
-    public String getProjectAdd(){
+    @GetMapping("/users/{userId}")
+    public String getProjectAddPage(@PathVariable String userId, Model model){
+        model.addAttribute("userId", userId);
         return "projectAdd";
     }
 
-    @PostMapping
-    public String getProjectAd(@PathVariable String userId, Model model){
+    @PostMapping("/users/{userId}")
+    public String createProject(@PathVariable String userId, Model model, @ModelAttribute Project project){
         model.addAttribute("userId", userId);
-
-        return "redirect:/home";
+        projectFeignClient.createProject(userId, project);
+        return "redirect:/projects/" + userId;
     }
 
 
