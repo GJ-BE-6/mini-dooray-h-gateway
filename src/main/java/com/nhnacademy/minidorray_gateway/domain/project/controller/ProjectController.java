@@ -63,17 +63,17 @@ public class ProjectController {
 
 
 
-//    @GetMapping("/{projectId}")
-//    public String getProject(@PathVariable Long projectId, Model model) {
-//        Project project = projectFeignClient.getProjectById(projectId);
-//        List<ProjectMember>memberList=projectFeignClient.getMembers(projectId);
-//        List<Task>taskList=projectFeignClient.getTasks(projectId);
-//
-//        model.addAttribute("project", project);
-//        model.addAttribute("member", memberList);
-//        model.addAttribute("tasks", taskList);
-//        return "projectView";
-//    }
+    @GetMapping("/project/{projectId}")
+    public String getProject(@PathVariable Long projectId, Model model) {
+        Project project = projectFeignClient.getProjectById(projectId);
+        List<ProjectMember>memberList=projectFeignClient.getMembers(projectId);
+        List<Task>taskList=projectFeignClient.getTasks(projectId);
+
+        model.addAttribute("project", project);
+        model.addAttribute("member", memberList);
+        model.addAttribute("tasks", taskList);
+        return "projectView";
+    }
 
 //
 //
