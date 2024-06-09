@@ -10,6 +10,7 @@ import java.time.ZonedDateTime;
 @Getter
 @Data
 @Builder
+@Setter
 public class MilestoneDTO {
     private Long milestoneId;
     private Long projectId;

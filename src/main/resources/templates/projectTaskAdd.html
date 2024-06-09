@@ -1,24 +1,107 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>테스크 추가</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>테스크 추가하기</h1>-->
+
+
+<!--<form th:action="@{/tasks/{projectId}(projectId=${projectId})}" method="post">-->
+<!--    <label for="taskName">테스크 이름:</label>-->
+<!--    <input type="text" id="taskName" name="taskName" required>-->
+
+<!--    <label for="taskDescription">테스크 내용:</label>-->
+<!--    <textarea id="taskDescription" name="taskDescription" required></textarea>-->
+<!--    <label for="taskStatus">테스크 상태:</label>-->
+<!--    <input type="text" id="taskStatus" name="taskStatus" required>-->
+
+<!--    <button type="submit">테스크 추가하기</button>-->
+
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>테스크 추가</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<h1>테스크 추가하기</h1>
+<div class="container">
+    <h1>테스크 추가하기</h1>
+    <form th:action="@{/tasks/{projectId}(projectId=${projectId})}" method="post">
+        <label for="taskName">테스크 이름:</label>
+        <input type="text" id="taskName" name="taskName" required>
 
+        <label for="taskDescription">테스크 내용:</label>
+        <textarea id="taskDescription" name="taskDescription" required></textarea>
 
-<form th:action="@{/tasks/{projectId}(projectId=${projectId})}" method="post">
-    <label for="taskName">테스크 이름:</label>
-    <input type="text" id="taskName" name="taskName" required>
+        <label for="taskStatus">테스크 상태:</label>
+        <input type="text" id="taskStatus" name="taskStatus" required>
 
-    <label for="taskDescription">테스크 내용:</label>
-    <textarea id="taskDescription" name="taskDescription" required></textarea>
-    <label for="taskStatus">테스크 상태:</label>
-    <input type="text" id="taskStatus" name="taskStatus" required>
-
-    <button type="submit">테스크 추가하기</button>
-
-</form>
+        <button type="submit">테스크 추가하기</button>
+    </form>
+</div>
 </body>
 </html>

@@ -1,17 +1,96 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>메인홈</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>나의 프로젝트 목록</h1>-->
+<!--<ul  th:if="${not #lists.isEmpty(projects)}">-->
+<!--    <li th:each="project : ${projects}">-->
+<!--        <a th:href="@{/projects/project/{id}(id=${project.projectId})}" th:text="${project.projectName}"></a>-->
+<!--    </li>-->
+<!--</ul>-->
+<!--<p th:if="${#lists.isEmpty(projects)}">프로젝트 목록이 없습니다.</p>-->
+<!--<a th:href="@{/projects/users/{userId}(userId=${userId})}" >프로젝트 추가하기</a>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>메인홈</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        p {
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-<h1>나의 프로젝트 목록</h1>
-<ul  th:if="${not #lists.isEmpty(projects)}">
-    <li th:each="project : ${projects}">
-        <a th:href="@{/projects/project/{id}(id=${project.projectId})}" th:text="${project.projectName}"></a>
-    </li>
-</ul>
-<p th:if="${#lists.isEmpty(projects)}">프로젝트 목록이 없습니다.</p>
-<a th:href="@{/projects/users/{userId}(userId=${userId})}" >프로젝트 추가하기</a>
+<div class="container">
+    <h1>나의 프로젝트 목록</h1>
+    <ul th:if="${not #lists.isEmpty(projects)}">
+        <li th:each="project : ${projects}">
+            <a th:href="@{/projects/project/{id}(id=${project.projectId})}" th:text="${project.projectName}"></a>
+        </li>
+    </ul>
+    <p th:if="${#lists.isEmpty(projects)}">프로젝트 목록이 없습니다.</p>
+    <a th:href="@{/projects/users/{userId}(userId=${userId})}" class="btn">프로젝트 추가하기</a>
+</div>
 </body>
 </html>
