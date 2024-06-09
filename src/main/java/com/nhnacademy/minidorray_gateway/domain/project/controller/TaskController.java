@@ -3,6 +3,7 @@ package com.nhnacademy.minidorray_gateway.domain.project.controller;
 
 import com.nhnacademy.minidorray_gateway.domain.project.dto.*;
 import com.nhnacademy.minidorray_gateway.domain.project.feignClient.TaskClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Controller()
 @RequestMapping("tasks")
 public class TaskController {
@@ -73,21 +75,26 @@ public class TaskController {
     }
 
     @PutMapping("/task/edit/{id}")
-    public String updateTask(@ModelAttribute TaskDto task, @PathVariable Long id, @RequestParam("projectId") Long projectId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userId = authentication.getName();
-        task.setUserId(userId);
-        task.setProjectId(projectId);
-        taskFeignClient.updateTask(task);
+    public String updateTask(@ModelAttribute TaskDto task, @PathVariable Long id) {
+
+        TaskDto oldTask = taskFeignClient.getTask(id);
+
+        oldTask.setTaskName(task.getTaskName());
+        oldTask.setTaskDescription(task.getTaskDescription());
+        oldTask.setTaskStatus(task.getTaskStatus());
+
+        taskFeignClient.updateTask(oldTask);
+
         return "redirect:/projects/project/"+task.getProjectId();
     }
 
     // Task 삭제
     @DeleteMapping("/task/{id}")
-    public void deleteTask(@PathVariable Long id) {
+    public String deleteTask(@PathVariable Long id) {
+        TaskDto task = taskFeignClient.getTask(id);
+
         taskFeignClient.deleteTask(id);
+
+        return "redirect:/projects/project/"+task.getProjectId();
     }
-
-
-
 }

@@ -1,7 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>프로젝트 세부내역</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #007BFF;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            margin-left: 20px;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        header nav {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+        header nav ul.center {
+            justify-content: center;
+            flex-grow: 1;
+        }
+        header nav ul.right {
+            justify-content: flex-end;
+            margin-right: 20px;
+        }
+        header nav ul li {
+            display: inline;
+        }
+        header nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav ul li a:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
         .delete-button {
             background-color: #dc3545;
             color: white;
@@ -10,97 +76,247 @@
             border-radius: 3px;
             cursor: pointer;
             margin-left: 10px;
-            margin-bottom: 10px/* 삭제 버튼 사이 간격을 주기 위한 마진 */
+            margin-bottom: 10px; /* 삭제 버튼 사이 간격을 주기 위한 마진 */
         }
 
         .delete-button:hover {
             background-color: #c82333;
         }
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+
+
+
+
+
+
     </style>
-    <meta charset="UTF-8">
-    <title>프로젝트 세부내역</title>
 </head>
 <body>
-<h1>프로젝트 세부내역</h1>
-<div>
-    <p><strong>프로젝트 이름:</strong> <span th:text="${project.projectName}"></span></p>
-    <p><strong>상태:</strong> <span th:text="${project.projectStatus}"></span></p>
-    <p><strong>멤버목록:</strong>
-
-    <div th:if="${not #lists.isEmpty(members)}">
-        <ul>
-            <li>
-                Admin
-                <ul>
-                    <li th:each="member : ${members}" th:if="${member.role eq 'Admin'}">
-                        <span th:text="${member.userId}"></span>
-                    </li>
-                </ul>
-            </li>
+<header>
+    <a href="/home" class="logo">Dooray!</a>
+    <nav>
+        <ul class="center">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/dummy1">더미버튼1</a></li>
+            <li><a href="/dummy2">더미버튼2</a></li>
         </ul>
+        <ul class="right" id="auth-buttons">
+            <li id="login"><a href="/login">로그인</a></li>
+            <li id="register"><a href="/register">회원 가입</a></li>
+            <li id="profile" style="display:none;"><a href="/profile">내 정보</a></li>
+            <li id="logout" style="display:none;"><a href="/logout">로그아웃</a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="container">
+        <!-- 프로젝트 세부내역 제목 -->
+        <h1>프로젝트 세부내역</h1>
 
-    <ul>
-        <li>
-            Member
-            <ul>
-                <li th:each="member : ${members}" th:if="${member.role eq 'Member'}">
+        <!-- 프로젝트 정보 -->
+        <div>
+            <p><strong>프로젝트 이름:</strong> <span th:text="${project.projectName}"></span></p>
+            <p><strong>상태:</strong> <span th:text="${project.projectStatus}"></span></p>
+        </div>
+
+        <!-- 멤버목록 -->
+        <div>
+            <div><strong>멤버목록:</strong></div>
+            <div>
+                <div><strong>Admin</strong></div>
+                <div th:each="member : ${members}" th:if="${member.role eq 'Admin'}">
                     <span th:text="${member.userId}"></span>
-                    <!-- 삭제 버튼 -->
+                </div>
+            </div>
+            <div>
+                <div><strong>Member</strong></div>
+                <div th:each="member : ${members}" th:if="${member.role eq 'Member'}">
+                    <span th:text="${member.userId}"></span>
                     <form th:action="@{'/projects/' + ${project.projectId} + '/members/' + ${member.userId}}" method="get">
                         <input type="hidden" name="_method" value="DELETE"/>
                         <button class="delete-button" type="submit">삭제</button>
                     </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 업무목록 -->
+        <div>
+            <div><strong>업무목록:</strong></div>
+            <div th:if="${not #lists.isEmpty(tasks)}">
+                <div th:each="task : ${tasks}">
+                    <div>
+                        <a th:href="@{/tasks/{id}(id=${task.taskId})}" th:text="${task.taskName}"></a>
+                        <button th:onclick="'window.location.href=\'/tasks/task/edit/' + ${task.taskId} + '\';'">수정</button>
+                        <form th:action="@{/tasks/task/{id}(id=${task.taskId})}" th:method="delete"
+                              onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                            <input type="hidden" name="_method" value="delete">
+                            <button class="delete-button" type="submit">삭제</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p><strong>태그목록:</strong>
+        <div th:if="${not #lists.isEmpty(tags)}">
+            <ul th:each="tag : ${tags}">
+                <li>
+                    <p th:text="${tag.tagName}" th:href="@{/tags/}"></p>
+                    <!-- 수정 버튼 -->
+                    <button th:onclick="'window.location.href=\'/tags/update?tagId=' + ${tag.tagId} + '\';'">수정</button>
+                    <!-- 삭제 버튼 -->
+                    <form th:action="@{/tags/{tagId}(tagId=${tag.tagId})}" th:method="delete"
+                          onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                        <button type="submit">삭제</button>
+                    </form>
                 </li>
             </ul>
-        </li>
-    </ul>
+
+
+        <!-- 추가 링크 -->
+        <div>
+            <a th:href="@{/tasks/task/{projectId}(projectId=${project.projectId})}" class="btn">테스크 추가</a>
+            <a th:href="@{/milestones/{projectId}(projectId=${project.projectId})}" class="btn">마일스톤 추가</a>
+            <a th:href="@{/tags(projectId=${project.projectId})}" class="btn">태그 추가</a>
+            <a th:href="@{/projects/{projectId}/members(projectId=${project.projectId})}" class="btn">멤버 추가</a>
+        </div>
     </div>
-
-
-
-
-
-
-    <p><strong>업무목록:</strong>
-    <div th:if="${not #lists.isEmpty(tasks)}">
-        <ul th:each="task : ${tasks}">
-
-            <li>
-                <a th:href="@{/tasks/{id}(id=${task.taskId})}" th:text="${task.taskName}"></a>
-                <!-- 수정 버튼 -->
-                <button th:onclick="'window.location.href=\'/tasks/task/edit/' + ${task.taskId} + '\';'">수정</button>
-                <!-- 삭제 버튼 -->
-                <form th:action="@{/tasks/task/{id}(id=${task.taskId})}" th:method="delete"
-                      onsubmit="return confirm('정말 삭제하시겠습니까?');">
-                    <input type="hidden" name="_method" value="delete">
-                    <button type="submit">삭제</button>
-                </form>
-            </li>
-        </ul>
     </div>
-
-    <p><strong>태그목록:</strong>
-    <div th:if="${not #lists.isEmpty(tags)}">
-        <ul th:each="tag : ${tags}">
-            <li>
-                <p th:text="${tag.tagName}" th:href="@{/tags/}"></p>
-                <!-- 수정 버튼 -->
-                <button th:onclick="'window.location.href=\'/tags/update?tagId=' + ${tag.tagId} + '\';'">수정</button>
-                <!-- 삭제 버튼 -->
-                <form th:action="@{/tags/{tagId}(tagId=${tag.tagId})}" th:method="delete"
-                      onsubmit="return confirm('정말 삭제하시겠습니까?');">
-                    <button type="submit">삭제</button>
-                </form>
-            </li>
-        </ul>
-    </div>
-
-
-</div>
-<a th:href="@{/tasks/task/{projectId}(projectId=${project.projectId})}">테스크 추가</a>
-<a th:href="@{/milestones/{projectId}(projectId=${project.projectId})}">마일스톤 추가</a>
-<a th:href="@{/tags(projectId=${project.projectId})}">태그 추가</a>
-<a th:href="@{/projects/{projectId}/members(projectId=${project.projectId})}">멤버 추가</a>
-
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        checkLoginStatus();
+    });
+
+    function checkLoginStatus() {
+        fetch('/api/check-login', {
+            method: 'GET',
+            credentials: 'include' // 세션 쿠키를 포함하여 요청
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.loggedIn) {
+                    document.getElementById('login').style.display = 'none';
+                    document.getElementById('register').style.display = 'none';
+                    document.getElementById('profile').style.display = 'inline';
+                    document.getElementById('logout').style.display = 'inline';
+                } else {
+                    document.getElementById('login').style.display = 'inline';
+                    document.getElementById('register').style.display = 'inline';
+                    document.getElementById('profile').style.display = 'none';
+                    document.getElementById('logout').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking login status:', error);
+            });
+    }
+</script>
