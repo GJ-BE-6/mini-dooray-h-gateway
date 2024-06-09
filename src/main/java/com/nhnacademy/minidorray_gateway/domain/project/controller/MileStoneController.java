@@ -2,6 +2,7 @@ package com.nhnacademy.minidorray_gateway.domain.project.controller;
 
 import com.nhnacademy.minidorray_gateway.domain.project.dto.MilestoneDTO;
 import com.nhnacademy.minidorray_gateway.domain.project.feignClient.TaskClient;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,14 @@ public class MileStoneController {
         this.milestoneFeignClient = milestoneFeignClient;
     }
 
+    @Operation(summary = "마일스톤 추가 페이지로 이동", description = "마일스톤 추가페이지로 이동합니다")
     @GetMapping("/milestones/{projectId}")
     public String getMilestoneAddPage(@PathVariable("projectId") Long projectId, Model model){
         model.addAttribute("projectId", projectId);
         return "projectMilestoneAdd";
     }
 
+    @Operation(summary = "마일스톤 생성", description = "마일스톤 생성 기능을 수행합니다")
     @PostMapping("/milestones/{projectId}")
     public String createMilestone(@PathVariable("projectId") Long projectId, @ModelAttribute MilestoneDTO milestone, Model model) {
         milestoneFeignClient.createMilestone(milestone);
