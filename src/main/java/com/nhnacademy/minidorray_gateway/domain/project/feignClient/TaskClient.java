@@ -20,7 +20,7 @@ public interface TaskClient {
 
     // User가 속한 프로젝트들만 가져오기
     @GetMapping("/projects/users/{id}")
-    List<Project> getAllProjectsByUserId(@PathVariable String id);
+    List<ProjectDto> getAllProjectsByUserId(@PathVariable String id);
 
     // ProjectId에 해당하는 프로젝트 가져오기
     @GetMapping("/projects/{id}")
