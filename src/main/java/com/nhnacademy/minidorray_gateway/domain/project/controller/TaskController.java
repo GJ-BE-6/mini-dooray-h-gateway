@@ -31,14 +31,19 @@ public class TaskController {
         if(milestoneList==null){
             milestoneList = new ArrayList<>();
         }
-        List<TagDTO> tagList= taskFeignClient.getTaskTagsByTaskId(id);
+        List<TagResponseDTO> tagList= taskFeignClient.getTagByProjectId(task.getProjectId());
         if(tagList==null){
             tagList = new ArrayList<>();
+        }
+        List<TagResponseDTO> settingTagList = taskFeignClient.getTaskTagsByTaskId(id);
+        if(settingTagList==null){
+            settingTagList = new ArrayList<>();
         }
         model.addAttribute("task", task);
         model.addAttribute("comments", commentList);
         model.addAttribute("milestones", milestoneList);
         model.addAttribute("tags", tagList);
+        model.addAttribute("settingTags", settingTagList);
         return "taskView";
     }
     @GetMapping("/task/{projectId}")

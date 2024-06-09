@@ -84,6 +84,8 @@
         <ul th:each="tag : ${tags}">
             <li>
                 <p th:text="${tag.tagName}" th:href="@{/tags/}"></p>
+                <!-- 수정 버튼 -->
+                <button th:onclick="'window.location.href=\'/tags/update?tagId=' + ${tag.tagId} + '\';'">수정</button>
                 <!-- 삭제 버튼 -->
                 <form th:action="@{/tags/{tagId}(tagId=${tag.tagId})}" th:method="delete"
                       onsubmit="return confirm('정말 삭제하시겠습니까?');">

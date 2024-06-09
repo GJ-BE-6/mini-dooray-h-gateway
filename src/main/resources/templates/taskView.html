@@ -181,9 +181,29 @@
     </div>
 
     <div class="section">
-        <div class="section-header">태그 목록</div>
+        <div class="section-header">설정된 태그 목록</div>
+        <ul th:each="tag : ${settingTags}">
+            <li>
+                <p th:text="${tag.tagName}" th:href="@{/tags/}"></p>
+                <!-- 태스크에서 설정 취소 버튼 -->
+                <form th:action="@{/tasks/tag(tagId=${tag.tagId}, taskId=${task.taskId})}" th:method="delete"
+                      onsubmit="return confirm('해당 태스크에서 설정 취소하시겠습니까?');">
+                    <button type="submit">설정 취소</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-header">설정 가능한 태그 목록</div>
         <ul th:each="tag : ${tags}">
-            <li th:text="${tag.tagName}"></li>
+            <li>
+                <p th:text="${tag.tagName}" th:href="@{/tags/}"></p>
+                <!-- 태스크에 설정 버튼 -->
+                <form th:action="@{/tasks/tag(tagId=${tag.tagId},taskId=${task.taskId})}" th:method="post">
+                    <button type="submit">태스크에 설정</button>
+                </form>
+            </li>
         </ul>
     </div>
 

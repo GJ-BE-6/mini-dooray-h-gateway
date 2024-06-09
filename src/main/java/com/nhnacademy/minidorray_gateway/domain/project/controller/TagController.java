@@ -2,6 +2,7 @@ package com.nhnacademy.minidorray_gateway.domain.project.controller;
 
 
 import com.nhnacademy.minidorray_gateway.domain.project.dto.TagDTO;
+import com.nhnacademy.minidorray_gateway.domain.project.dto.TagResponseDTO;
 import com.nhnacademy.minidorray_gateway.domain.project.dto.TaskTagDTO;
 import com.nhnacademy.minidorray_gateway.domain.project.feignClient.TaskClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,19 @@ public class TagController {
         String userId= auth.getName();
         tagFeignClient.deleteTag(tagId);
         return "redirect:/projects/"+userId;
+    }
+
+    @GetMapping("/tags/update")
+    public String updateTagPage(@RequestParam("tagId") Long tagId, Model model){
+        TagResponseDTO tagResponseDTO = tagFeignClient.getTagById(tagId);
+        model.addAttribute("tag", tagResponseDTO);
+        return "tagUpdate";
+    }
+
+    @PutMapping("/tags/{tagId}")
+    public String updateTag(@PathVariable Long tagId, @ModelAttribute TagDTO tag) {
+        TagDTO tagDTO = tagFeignClient.updateTag(tagId, tag);
+        return "redirect:/projects/project/" + tagDTO.getProjectId();
     }
 
     @PostMapping("/tasks/tag")
