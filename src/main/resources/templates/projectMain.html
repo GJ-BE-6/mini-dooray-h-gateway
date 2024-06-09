@@ -6,11 +6,11 @@
 </head>
 <body>
 <h1>나의 프로젝트 목록</h1>
-<ul>
-    <li th:each="project : ${projects}">
-        <a th:href="@{/projects/{id}(id=${projects.projectId})}" th:text="${projects.projectName}"></a>
-    </li>
-</ul>
-<a th:href="@{/projects/{id}(id=${projects.projectId})}" >프로젝트 추가하기</a>
+<!--<ul>-->
+<!--    <li th:each="project : ${projects}">-->
+<!--        <a th:href="@{/projects/{id}(id=${projects.projectId})}" th:text="${projects.projectName}"></a>-->
+<!--    </li>-->
+<!--</ul>-->
+<!--<a th:href="@{/projects/{id}(id=${projects.projectId})}" >프로젝트 추가하기</a>-->
 </body>
 </html>

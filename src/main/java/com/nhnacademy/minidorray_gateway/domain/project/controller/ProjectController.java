@@ -31,34 +31,34 @@ public class ProjectController {
         return "projectMain";
     }
 
-    @PostMapping("/{userId}")
-    public String createProject(@ModelAttribute Project project, @PathVariable String userId) {
-        projectFeignClient.createProject(userId, project);
-        return "redirect:/projects/"+userId;
-    }
+//    @PostMapping("/{userId}")
+//    public String createProject(@ModelAttribute Project project, @PathVariable String userId) {
+//        projectFeignClient.createProject(userId, project);
+//        return "redirect:/projects/"+userId;
+//    }
 
-    @PostMapping("/{projectId}/members")
-    public String addMember(@PathVariable("projectId") Long projectId, @ModelAttribute MemberDto user) {
-        projectFeignClient.addMember(projectId, user);
-        return "redirect:/projects/" + projectId;
-    }
-
-
+//    @PostMapping("/{projectId}/members")
+//    public String addMember(@PathVariable("projectId") Long projectId, @ModelAttribute MemberDto user) {
+//        projectFeignClient.addMember(projectId, user);
+//        return "redirect:/projects/" + projectId;
+//    }
 
 
 
 
-    @GetMapping("/{projectId}")
-    public String getProject(@PathVariable Long projectId, Model model) {
-        Project project = projectFeignClient.getProjectById(projectId);
-        List<ProjectMember>memberList=projectFeignClient.getMembers(projectId);
-        List<Task>taskList=projectFeignClient.getTasks(projectId);
 
-        model.addAttribute("project", project);
-        model.addAttribute("member", memberList);
-        model.addAttribute("tasks", taskList);
-        return "projectView";
-    }
+
+//    @GetMapping("/{projectId}")
+//    public String getProject(@PathVariable Long projectId, Model model) {
+//        Project project = projectFeignClient.getProjectById(projectId);
+//        List<ProjectMember>memberList=projectFeignClient.getMembers(projectId);
+//        List<Task>taskList=projectFeignClient.getTasks(projectId);
+//
+//        model.addAttribute("project", project);
+//        model.addAttribute("member", memberList);
+//        model.addAttribute("tasks", taskList);
+//        return "projectView";
+//    }
 
 //
 //
